@@ -1,8 +1,12 @@
 import { beforeAll, afterEach, afterAll, describe, it, expect } from 'vitest'
 import { server } from '../mocks/server'
 import {
-  getAlumnos, createAlumno, updateAlumno,
-  deleteAlumno, exportCSV, importCSV
+  getAlumnos,
+  createAlumno,
+  updateAlumno,
+  deleteAlumno,
+  exportCSV,
+  importCSV
 } from '../../api/alumnos'
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'warn' }))

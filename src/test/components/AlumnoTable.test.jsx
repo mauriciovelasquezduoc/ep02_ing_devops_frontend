@@ -2,12 +2,12 @@ import { render, screen, fireEvent } from '@testing-library/react'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import AlumnoTable from '../../components/AlumnoTable'
 
-const onEdit   = vi.fn()
+const onEdit = vi.fn()
 const onDelete = vi.fn()
 
 const ALUMNOS = [
-  { id: 1, nombre: 'Juan',   apellido: 'Pérez' },
-  { id: 2, nombre: 'Ana',    apellido: 'López' },
+  { id: 1, nombre: 'Juan', apellido: 'Pérez' },
+  { id: 2, nombre: 'Ana', apellido: 'López' }
 ]
 
 beforeEach(() => {

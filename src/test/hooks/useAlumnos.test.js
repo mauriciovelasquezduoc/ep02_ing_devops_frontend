@@ -81,7 +81,9 @@ describe('useAlumnos — eliminar', () => {
   it('muestra mensaje de éxito al eliminar', async () => {
     const { result } = renderHook(() => useAlumnos())
     await waitFor(() => expect(result.current.loading).toBe(false))
-    await act(async () => { await result.current.eliminar(1) })
+    await act(async () => {
+      await result.current.eliminar(1)
+    })
     await waitFor(() => expect(result.current.success).toMatch(/eliminado/i))
   })
 
@@ -89,7 +91,9 @@ describe('useAlumnos — eliminar', () => {
     server.use(http.delete('/ep02/:id', () => HttpResponse.error()))
     const { result } = renderHook(() => useAlumnos())
     await waitFor(() => expect(result.current.loading).toBe(false))
-    await act(async () => { await result.current.eliminar(1) })
+    await act(async () => {
+      await result.current.eliminar(1)
+    })
     await waitFor(() => expect(result.current.error).toMatch(/Error al eliminar/i))
   })
 })
@@ -105,7 +109,9 @@ describe('useAlumnos — exportar', () => {
     })
     const { result } = renderHook(() => useAlumnos())
     await waitFor(() => expect(result.current.loading).toBe(false))
-    await act(async () => { await result.current.exportar() })
+    await act(async () => {
+      await result.current.exportar()
+    })
     expect(clickMock).toHaveBeenCalled()
     await waitFor(() => expect(result.current.success).toMatch(/exportado/i))
     vi.restoreAllMocks()
@@ -115,7 +121,9 @@ describe('useAlumnos — exportar', () => {
     server.use(http.get('/ep02/export', () => HttpResponse.error()))
     const { result } = renderHook(() => useAlumnos())
     await waitFor(() => expect(result.current.loading).toBe(false))
-    await act(async () => { await result.current.exportar() })
+    await act(async () => {
+      await result.current.exportar()
+    })
     await waitFor(() => expect(result.current.error).toMatch(/Error al exportar/i))
   })
 })

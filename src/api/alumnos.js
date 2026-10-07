@@ -6,11 +6,12 @@ import axios from 'axios'
 
 const api = axios.create({ baseURL: `/ep02` })
 
-export const getAlumnos   = ()           => api.get('')
-export const createAlumno = (data)       => api.post('', data)
-export const updateAlumno = (id, data)   => api.put(`/${id}`, data)
-export const deleteAlumno = (id)         => api.delete(`/${id}`)
-export const exportCSV    = ()           => api.get('/export', { responseType: 'text' })
-export const importCSV    = (csvText)    => api.post('/import', csvText, {
-  headers: { 'Content-Type': 'text/plain' }
-})
+export const getAlumnos = () => api.get('')
+export const createAlumno = (data) => api.post('', data)
+export const updateAlumno = (id, data) => api.put(`/${id}`, data)
+export const deleteAlumno = (id) => api.delete(`/${id}`)
+export const exportCSV = () => api.get('/export', { responseType: 'text' })
+export const importCSV = (csvText) =>
+  api.post('/import', csvText, {
+    headers: { 'Content-Type': 'text/plain' }
+  })

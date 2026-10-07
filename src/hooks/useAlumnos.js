@@ -1,18 +1,27 @@
 import { useState, useEffect, useCallback } from 'react'
 import {
-  getAlumnos, createAlumno, updateAlumno,
-  deleteAlumno, exportCSV, importCSV
+  getAlumnos,
+  createAlumno,
+  updateAlumno,
+  deleteAlumno,
+  exportCSV,
+  importCSV
 } from '../api/alumnos'
 
 export function useAlumnos() {
-  const [ep02,  setAlumnos]  = useState([])
-  const [loading,  setLoading]  = useState(false)
-  const [error,    setError]    = useState(null)
-  const [success,  setSuccess]  = useState(null)
+  const [ep02, setAlumnos] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(null)
 
   const notify = (msg, isError = false) => {
-    if (isError) { setError(msg);   setTimeout(() => setError(null),   4000) }
-    else         { setSuccess(msg); setTimeout(() => setSuccess(null), 3000) }
+    if (isError) {
+      setError(msg)
+      setTimeout(() => setError(null), 4000)
+    } else {
+      setSuccess(msg)
+      setTimeout(() => setSuccess(null), 3000)
+    }
   }
 
   const load = useCallback(async () => {
@@ -27,7 +36,9 @@ export function useAlumnos() {
     }
   }, [])
 
-  useEffect(() => { load() }, [load])
+  useEffect(() => {
+    load()
+  }, [load])
 
   const crear = async (alumno) => {
     try {
@@ -67,9 +78,11 @@ export function useAlumnos() {
     try {
       const { data } = await exportCSV()
       const blob = new Blob([data], { type: 'text/csv' })
-      const url  = URL.createObjectURL(blob)
-      const a    = document.createElement('a')
-      a.href = url; a.download = 'ep02.csv'; a.click()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'ep02.csv'
+      a.click()
       URL.revokeObjectURL(url)
       notify('CSV exportado')
     } catch {
@@ -89,5 +102,16 @@ export function useAlumnos() {
     }
   }
 
-  return { ep02, loading, error, success, crear, actualizar, eliminar, exportar, importar, reload: load }
+  return {
+    ep02,
+    loading,
+    error,
+    success,
+    crear,
+    actualizar,
+    eliminar,
+    exportar,
+    importar,
+    reload: load
+  }
 }

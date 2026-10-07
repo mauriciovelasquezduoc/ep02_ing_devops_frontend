@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 export default function CsvPanel({ onExport, onImport }) {
   const [csvText, setCsvText] = useState('')
-  const [open, setOpen]       = useState(false)
+  const [open, setOpen] = useState(false)
 
   const handleImport = async () => {
     if (!csvText.trim()) return
@@ -14,7 +14,7 @@ export default function CsvPanel({ onExport, onImport }) {
     <div className="card">
       <div className="card-title" style={{ justifyContent: 'space-between' }}>
         <span>📄 Importar / Exportar CSV</span>
-        <button className="btn btn-ghost btn-sm" onClick={() => setOpen(o => !o)}>
+        <button className="btn btn-ghost btn-sm" onClick={() => setOpen((o) => !o)}>
           {open ? 'Ocultar' : 'Mostrar'}
         </button>
       </div>
@@ -27,14 +27,19 @@ export default function CsvPanel({ onExport, onImport }) {
 
           <textarea
             value={csvText}
-            onChange={e => setCsvText(e.target.value)}
-            placeholder={"Juan,Pérez\nAna,López\nCarlos,Soto"}
+            onChange={(e) => setCsvText(e.target.value)}
+            placeholder={'Juan,Pérez\nAna,López\nCarlos,Soto'}
             rows={5}
             style={{
-              width: '100%', padding: '.6rem .75rem',
-              border: '1.5px solid var(--border)', borderRadius: '6px',
-              fontFamily: 'monospace', fontSize: '.88rem', resize: 'vertical',
-              outline: 'none', marginBottom: '.75rem'
+              width: '100%',
+              padding: '.6rem .75rem',
+              border: '1.5px solid var(--border)',
+              borderRadius: '6px',
+              fontFamily: 'monospace',
+              fontSize: '.88rem',
+              resize: 'vertical',
+              outline: 'none',
+              marginBottom: '.75rem'
             }}
           />
 

@@ -50,9 +50,7 @@ describe('App — renderizado inicial', () => {
 
   it('muestra el panel CSV', async () => {
     render(<App />)
-    await waitFor(() =>
-      expect(screen.getByText(/Importar \/ Exportar CSV/i)).toBeInTheDocument()
-    )
+    await waitFor(() => expect(screen.getByText(/Importar \/ Exportar CSV/i)).toBeInTheDocument())
   })
 })
 
@@ -60,8 +58,11 @@ describe('App — alertas', () => {
   it('muestra alerta de error si la carga falla', async () => {
     server.use(http.get('/ep02', () => HttpResponse.error()))
     render(<App />)
-    await waitFor(() =>
-      expect(screen.getByText((content) => content.includes('Error al cargar'))).toBeInTheDocument(),
+    await waitFor(
+      () =>
+        expect(
+          screen.getByText((content) => content.includes('Error al cargar'))
+        ).toBeInTheDocument(),
       { timeout: 3000 }
     )
   })
@@ -76,9 +77,7 @@ describe('App — flujo de creación', () => {
     await userEvent.type(screen.getByLabelText(/apellido/i), 'Soto')
     fireEvent.submit(screen.getByRole('button', { name: /agregar/i }).closest('form'))
 
-    await waitFor(() =>
-      expect(screen.getByText(/creado correctamente/i)).toBeInTheDocument()
-    )
+    await waitFor(() => expect(screen.getByText(/creado correctamente/i)).toBeInTheDocument())
   })
 })
 
@@ -88,9 +87,7 @@ describe('App — flujo de edición', () => {
     await waitFor(() => expect(screen.getAllByTitle('Editar').length).toBeGreaterThan(0))
 
     fireEvent.click(screen.getAllByTitle('Editar')[0])
-    await waitFor(() =>
-      expect(screen.getByText(/Editar alumno/i)).toBeInTheDocument()
-    )
+    await waitFor(() => expect(screen.getByText(/Editar alumno/i)).toBeInTheDocument())
   })
 
   it('cancela la edición al hacer click en Cancelar', async () => {
@@ -101,9 +98,7 @@ describe('App — flujo de edición', () => {
     await waitFor(() => expect(screen.getByText(/cancelar/i)).toBeInTheDocument())
 
     await userEvent.click(screen.getByText(/cancelar/i))
-    await waitFor(() =>
-      expect(screen.getByText(/Nuevo alumno/i)).toBeInTheDocument()
-    )
+    await waitFor(() => expect(screen.getByText(/Nuevo alumno/i)).toBeInTheDocument())
   })
 
   it('guarda la edición y vuelve al modo creación', async () => {
@@ -114,9 +109,7 @@ describe('App — flujo de edición', () => {
     await waitFor(() => expect(screen.getByText(/Editar alumno/i)).toBeInTheDocument())
 
     fireEvent.submit(screen.getByRole('button', { name: /guardar/i }).closest('form'))
-    await waitFor(() =>
-      expect(screen.getByText(/actualizado correctamente/i)).toBeInTheDocument()
-    )
+    await waitFor(() => expect(screen.getByText(/actualizado correctamente/i)).toBeInTheDocument())
   })
 })
 
@@ -127,9 +120,7 @@ describe('App — flujo de eliminación', () => {
     await waitFor(() => expect(screen.getAllByTitle('Eliminar').length).toBeGreaterThan(0))
 
     fireEvent.click(screen.getAllByTitle('Eliminar')[0])
-    await waitFor(() =>
-      expect(screen.getByText(/eliminado/i)).toBeInTheDocument()
-    )
+    await waitFor(() => expect(screen.getByText(/eliminado/i)).toBeInTheDocument())
     vi.restoreAllMocks()
   })
 })

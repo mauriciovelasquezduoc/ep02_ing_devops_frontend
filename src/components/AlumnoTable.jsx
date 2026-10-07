@@ -25,16 +25,14 @@ export default function AlumnoTable({ ep02, onEdit, onDelete }) {
         <tbody>
           {ep02.map((a) => (
             <tr key={a.id}>
-              <td><span className="badge">{a.id}</span></td>
+              <td>
+                <span className="badge">{a.id}</span>
+              </td>
               <td>{a.nombre}</td>
               <td>{a.apellido}</td>
               <td>
                 <div className="td-actions">
-                  <button
-                    className="btn btn-ghost btn-sm"
-                    onClick={() => onEdit(a)}
-                    title="Editar"
-                  >
+                  <button className="btn btn-ghost btn-sm" onClick={() => onEdit(a)} title="Editar">
                     ✏️ Editar
                   </button>
                   <button

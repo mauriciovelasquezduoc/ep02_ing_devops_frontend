@@ -10,7 +10,7 @@ export default defineConfig({
     proxy: {
       '/ep02': {
         target: process.env.VITE_API_URL || 'http://localhost:8080',
-        changeOrigin: true,
+        changeOrigin: true
       }
     }
   },
@@ -36,19 +36,15 @@ export default defineConfig({
       include: ['src/**/*.{js,jsx}'],
 
       // Excluir archivos que no necesitan cobertura
-      exclude: [
-        'src/main.jsx',
-        'src/index.css',
-        'src/test/**',
-      ],
+      exclude: ['src/main.jsx', 'src/index.css', 'src/test/**'],
 
       // ── UMBRALES: si no se alcanza el 90% el build FALLA ─────────────────
       thresholds: {
-        lines:      90,
-        functions:  90,
-        branches:   90,
-        statements: 90,
-      },
-    },
-  },
+        lines: 90,
+        functions: 90,
+        branches: 90,
+        statements: 90
+      }
+    }
+  }
 })

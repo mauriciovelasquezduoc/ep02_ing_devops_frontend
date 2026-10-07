@@ -9,7 +9,7 @@ export default function AlumnoForm({ editing, onSubmit, onCancel }) {
     setForm(editing ? { nombre: editing.nombre, apellido: editing.apellido } : EMPTY)
   }, [editing])
 
-  const handle = (e) => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+  const handle = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
   const submit = async (e) => {
     e.preventDefault()
@@ -20,25 +20,31 @@ export default function AlumnoForm({ editing, onSubmit, onCancel }) {
 
   return (
     <div className="card">
-      <div className="card-title">
-        {editing ? '✏️ Editar alumno' : '➕ Nuevo alumno'}
-      </div>
+      <div className="card-title">{editing ? '✏️ Editar alumno' : '➕ Nuevo alumno'}</div>
       <form onSubmit={submit}>
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="nombre">Nombre</label>
             <input
-              id="nombre" name="nombre" value={form.nombre}
-              onChange={handle} placeholder="Ej: Juan"
-              required autoComplete="off"
+              id="nombre"
+              name="nombre"
+              value={form.nombre}
+              onChange={handle}
+              placeholder="Ej: Juan"
+              required
+              autoComplete="off"
             />
           </div>
           <div className="form-group">
             <label htmlFor="apellido">Apellido</label>
             <input
-              id="apellido" name="apellido" value={form.apellido}
-              onChange={handle} placeholder="Ej: Pérez"
-              required autoComplete="off"
+              id="apellido"
+              name="apellido"
+              value={form.apellido}
+              onChange={handle}
+              placeholder="Ej: Pérez"
+              required
+              autoComplete="off"
             />
           </div>
         </div>
