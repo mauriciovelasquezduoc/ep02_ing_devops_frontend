@@ -6,7 +6,7 @@ import prettier from 'eslint-config-prettier'
 
 export default [
   {
-    ignores: ['dist/**', 'coverage/**', 'reports/**', 'node_modules/**'],
+    ignores: ['dist/**', 'coverage/**', 'reports/**', 'node_modules/**']
   },
 
   // Reglas base recomendadas de JavaScript
