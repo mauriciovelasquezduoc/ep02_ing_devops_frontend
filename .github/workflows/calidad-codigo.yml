@@ -159,6 +159,7 @@ jobs:
     name: Mutación (Stryker)
     needs: coverage
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -170,6 +171,15 @@ jobs:
 
       - name: Instalar dependencias
         run: npm install
+
+      - name: Restaurar incremental de Stryker (cache)
+        uses: actions/cache@v4
+        with:
+          path: reports/stryker-incremental.json
+          key: stryker-incremental-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            stryker-incremental-${{ github.ref }}-
+            stryker-incremental-
 
       - name: Ejecutar pruebas de mutación con Stryker
         run: npm run test:mutation

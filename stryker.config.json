@@ -8,6 +8,8 @@
   "mutate": ["src/**/*.{js,jsx}", "!src/**/*.test.{js,jsx}", "!src/test/**/*", "!src/main.jsx"],
   "reporters": ["html", "clear-text", "progress", "json"],
   "coverageAnalysis": "perTest",
+  "incremental": true,
+  "incrementalFile": "reports/stryker-incremental.json",
   "htmlReporter": {
     "fileName": "reports/mutation/mutation.html"
   },
